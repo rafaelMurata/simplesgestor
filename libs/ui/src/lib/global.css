@@ -1,0 +1,125 @@
+
+@import 'tailwindcss';
+
+:root {
+
+    --color-primary: #1976d2;
+    --color-primary-dark: #115293;
+    --color-bg: #f5f7fa;
+    --color-white: #ffffff;
+    --color-text: #222;
+  }
+  
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Inter', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .logo {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+  
+  .login-button {
+    background: var(--color-primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  
+  .login-button:hover {
+    background: var(--color-primary-dark);
+  }
+  
+  /* Adicione estilos específicos do Navbar aqui também, se necessário */
+  .navbar {
+    background: var(--color-white);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem 0; /* Ajuste conforme necessário */
+    position: sticky; /* Ou fixed */
+    top: 0;
+    z-index: 100;
+  }
+  
+  .navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+  }
+  
+  .navbar-logo {
+    /* Estilos já cobertos pela classe .logo */
+    text-decoration: none;
+  }
+  
+  .navbar-links {
+    display: none; /* Escondido em mobile por padrão */
+    gap: 2rem;
+  }
+  
+  .navbar-links a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .navbar-links a:hover {
+    color: var(--color-primary);
+  }
+  
+  .navbar-actions {
+    display: none; /* Escondido em mobile por padrão */
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .navbar-toggle {
+    display: block; /* Visível em mobile */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-primary); /* Cor do ícone */
+  }
+  
+  .navbar-mobile {
+    display: none; /* Será mostrado via JS */
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--color-white);
+    border-top: 1px solid #eee;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%; /* Abaixo do navbar */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+   .navbar-mobile a {
+     color: var(--color-text);
+     text-decoration: none;
+     padding: 0.5rem 0;
+   }
+  
+  /* Media query para mostrar/esconder em desktop */
+  @media (min-width: 769px) {
+    .navbar-links,
+    .navbar-actions {
+      display: flex;
+    }
+    .navbar-toggle {
+      display: none;
+    }
+    .navbar-mobile {
+       display: none !important; /* Garante que não apareça em desktop */
+    }
+  }
