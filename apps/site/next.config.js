@@ -1,11 +1,16 @@
 const { composePlugins, withNx } = require('@nx/next');
 
-module.exports = composePlugins(withNx, {
+/**
+ * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
+ **/
+const nextConfig = {
   nx: {
     svgr: false,
   },
-  // Remova 'output: export' se não for fazer deploy estático
   images: {
     unoptimized: true,
   }
-});
+};
+
+// Correct format for composePlugins
+module.exports = composePlugins(withNx)(nextConfig);

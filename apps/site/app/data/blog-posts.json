@@ -1,0 +1,27 @@
+[
+    {
+      "id": 1,
+      "title": "Como organizar suas finanças como MEI",
+      "excerpt": "Aprenda a separar finanças pessoais e empresariais de forma simples...",
+      "image": "/images/feature1.jpg",
+      "content": "Conteúdo completo do artigo...",
+      "slug": "organizar-financas-mei"
+    },
+    {
+      "id": 2,
+      "title": "Passo a passo para emitir notas fiscais",
+      "excerpt": "Guia completo para emissão de NFS-e sem complicação...",
+      "image": "/images/feature2.jpg",
+      "content": "Conteúdo completo do artigo...",
+      "slug": "emitir-notas-fiscais"
+    },
+    {
+      "id": 3,
+      "title": "Calculando impostos do Simples Nacional",
+      "excerpt": "Entenda como calcular seus tributos mensais...",
+      "image": "/images/feature3.jpg",
+      "content": "Conteúdo completo do artigo...",
+      "slug": "calcular-impostos-simples"
+    }
+  ]
+  

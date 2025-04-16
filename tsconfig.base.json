@@ -17,8 +17,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@simplesgestor/analytics": ["shared/analytics/src/index.ts"],
-      "@simplesgestor/ui": ["libs/ui/src/index.ts"]
+      "@simplesgestor/ui": ["libs/ui/src/index.ts"],
+      "@simplesgestor/ui/*": ["libs/ui/src/*"],
+      "@/*": ["apps/site/app/*"]
     }
   },
   "exclude": ["node_modules", "tmp", "dist"]
