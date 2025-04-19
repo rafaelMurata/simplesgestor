@@ -1,17 +1,15 @@
 
-  /**
-   * Filtro de autenticação para roteamento do cliente
-   */
   import { AuthService } from './auth.service';
-  import { JwtPayload, PlanType, RouteAccess, RouteConfig, UserSession } from './types';
+  import { JwtPayload, RouteAccess, RouteConfig, UserSession } from './types';
+  import { PlanType } from '../../../shared-models';
 
   /**
    * Filtro de autenticação para roteamento do cliente
    */
   export class AuthFilter {
     constructor(
-      private authService: AuthService,
-      private routes: RouteConfig[]
+      private readonly authService: AuthService,
+      private readonly routes: RouteConfig[]
     ) {}
 
     /**

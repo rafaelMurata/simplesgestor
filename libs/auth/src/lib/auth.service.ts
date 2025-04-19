@@ -1,7 +1,8 @@
-  import * as jwt from 'jsonwebtoken';
-  import { AuthConfig, JwtPayload, PlanType, TokenResponse, UserSession } from './types';
+ import * as jwt from 'jsonwebtoken';
+  import { AuthConfig, JwtPayload, TokenResponse, UserSession } from './types';
+ import { PlanType, SubscriptionStatus }  from '../../../shared-models';
 
-  export class AuthService {
+ export class AuthService {
     private config: AuthConfig;
 
     constructor(config: AuthConfig) {
@@ -101,14 +102,13 @@
 
     hasActiveSubscription(session: UserSession | JwtPayload): boolean {
       if ('subscriptionStatus' in session) {
-        return session.subscriptionStatus === 'active';
+        return session.subscriptionStatus === SubscriptionStatus.ACTIVE;
       }
 
       if ('subscription' in session && session.subscription) {
-        return session.subscription.status === 'active';
+        return session.subscription.status === SubscriptionStatus.ACTIVE;
       }
 
       return false;
     }
   }
-

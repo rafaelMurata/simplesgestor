@@ -22,6 +22,18 @@ try {
   process.exit(1);
 }
 
+// Certificar que shared-models existe
+try {
+  console.log('Verificando se shared-models está compilado...');
+  if (!fs.existsSync(path.resolve(__dirname, '../dist/libs/shared-models'))) {
+    console.log('Biblioteca shared-models não encontrada, compilando primeiro...');
+    execSync('nx build shared-models', { stdio: 'inherit' });
+  }
+} catch (err) {
+  console.error('Erro ao verificar ou compilar shared-models:', err);
+  // Continua com a compilação do auth de qualquer forma
+}
+
 // Compilar TypeScript
 try {
   console.log('Compilando TypeScript...');

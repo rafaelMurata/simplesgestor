@@ -19,6 +19,9 @@
     "paths": {
       "@simplesgestor/ui": ["libs/ui/src/index.ts"],
       "@simplesgestor/ui/*": ["libs/ui/src/*"],
+      "@simplesgestor/shared-models": ["libs/shared-models/src/index.ts"],
+      "@simplesgestor/shared-models/*": ["libs/shared-models/src/*"],
+      "@simplesgestor/auth": ["libs/auth/src/index.ts"],
       "@/*": ["apps/site/app/*"]
     }
   },

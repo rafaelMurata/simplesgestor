@@ -24,9 +24,31 @@ fi
 echo "Instalando dependências..."
 npm install --no-package-lock --legacy-peer-deps
 
-# Compilar biblioteca auth
-echo "Compilando biblioteca de autenticação..."
-npx nx build auth
+# Verificar se pacotes essenciais estão instalados
+if ! npm list glob | grep -q glob; then
+  echo "Instalando pacote glob para scripts de padronização..."
+  npm install glob --save-dev
+fi
+
+if ! npm list tsconfig-paths | grep -q tsconfig-paths; then
+  echo "Instalando pacote tsconfig-paths para resolver caminhos de importação..."
+  npm install tsconfig-paths --save-dev
+fi
+
+# Corrigir a configuração do Nx
+echo "Corrigindo configuração do Nx workspace..."
+npx nx g @nx/workspace:fix-configuration
+
+# Padronizar importações
+echo "Padronizando importações para usar o namespace @simplesgestor/..."
+npm run fix:imports
+
+# Compilar bibliotecas
+echo "Compilando bibliotecas compartilhadas..."
+echo "Limpando diretório dist/libs antes de reconstruir..."
+rm -rf dist/libs
+npm run build:models
+npm run build:auth:manual
 
 echo "Instalação concluída!"
 echo "Para iniciar a aplicação, execute: npm run start:all"

@@ -1,33 +1,8 @@
-export enum PlanType {
-  FREE = 'Free',
-  BASIC = 'Basic',
-  ADVANCED = 'Advanced',
-  PREMIUM = 'Premium'
-}
+import { PlanType, User, Plan, Subscription } from '../../../../libs/shared-models';
 
-export interface User {
-  id: string;
-  email: string;
-  planId: string;
-}
-
-export interface Plan {
-  id: string;
-  name: PlanType;
-  price: number;
-  features: any;
-  isActive: boolean;
-}
-
-export interface Subscription {
-  id: string;
-  userId: string;
-  status: 'active' | 'canceled' | 'expired' | 'inactive';
-  startDate?: Date;
-  endDate?: Date;
-  externalId?: string;
-}
-
+/**
+ * Dados da sessão do usuário
+ */
 export interface UserSession {
   user: User;
   plan: Plan;
@@ -37,6 +12,9 @@ export interface UserSession {
   expiresAt: number;
 }
 
+/**
+ * Payload do token JWT
+ */
 export interface JwtPayload {
   sub: string;
   email: string;

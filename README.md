@@ -12,7 +12,23 @@ Sistema de gestão com suporte a diferentes níveis de planos (Free, Basic, Adva
 
 Para instalar todas as dependências, você precisará usar uma das seguintes abordagens:
 
-1. **Método recomendado** - Instalar com flag force:
+1. **Método recomendado** - Usar o script de instalação:
+   ```bash
+   ./install.sh
+   ```
+
+2. **Instalação manual** - Executar os seguintes comandos:
+   ```bash
+   npm install --no-package-lock --legacy-peer-deps
+   npm run fix:imports
+   npm run rebuild:libs
+   ```
+
+## Solução de problemas comuns
+
+### Erro: Cannot find module '@simplesgestor/shared-models'
+
+Se você encontrar este erro, execute os seguintes comandos para reconstruir as bibliotecas:
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
 ✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.

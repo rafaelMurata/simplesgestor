@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { getToken } from 'next-auth/jwt'
-import { AuthFilter, RouteAccess, AuthService, PlanType } from '@app/auth'
+import { AuthFilter, RouteAccess, AuthService, PlanType } from '@simplesgestor/auth'
 
 // Configuração de rotas com controle de acesso
 const routeConfigs = [

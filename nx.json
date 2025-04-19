@@ -17,7 +17,6 @@
     "appsDir": "apps",
     "libsDir": "libs"
   },
-  "defaultProject": "frontend",
   "generators": {
     "@nx/react": {
       "application": {
@@ -32,5 +31,8 @@
         "unitTestRunner": "jest"
       }
     }
+        },
+        "implicitDependencies": {
+          "auth": ["shared-models"]
   }
 }

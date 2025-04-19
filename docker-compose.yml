@@ -22,7 +22,7 @@ services:
       context: .
       dockerfile: Dockerfile.backend
     ports:
-      - "3000:3000"
+      - "4000:4000"
     depends_on:
       postgres:
         condition: service_healthy
@@ -32,15 +32,36 @@ services:
       DB_USERNAME: simplesgestor
       DB_PASSWORD: senhasegura123
       DB_DATABASE: simplesgestor
+    volumes:
+      - ./apps/backend:/app/apps/backend
+      - ./libs:/app/libs
+      - /app/node_modules
 
   frontend:
     build:
       context: .
       dockerfile: Dockerfile.frontend
     ports:
+      - "4201:4201"
+    depends_on:
+      - backend
+    volumes:
+      - ./apps/frontend:/app/apps/frontend
+      - ./libs:/app/libs
+      - /app/node_modules
+
+  site:
+    build:
+      context: .
+      dockerfile: Dockerfile.site
+    ports:
       - "4200:4200"
     depends_on:
       - backend
+    volumes:
+      - ./apps/site:/app/apps/site
+      - ./libs:/app/libs
+      - /app/node_modules
 
 volumes:
   pg_data:

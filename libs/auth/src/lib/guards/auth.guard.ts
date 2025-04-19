@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthService } from '../auth.service';
-import { PlanType } from '../types';
+import { PlanType }  from '../../../../shared-models';
 
 /**
  * Guard de autenticação para proteger rotas NestJS
@@ -9,8 +9,8 @@ import { PlanType } from '../types';
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(
-    private authService: AuthService,
-    private reflector: Reflector
+    private readonly authService: AuthService,
+    private readonly reflector: Reflector
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {

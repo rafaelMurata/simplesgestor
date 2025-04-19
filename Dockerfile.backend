@@ -1,0 +1,39 @@
+# Estágio de construção
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+
+# Copia arquivos de configuração necessários
+COPY package*.json ./
+COPY nx.json ./
+COPY tsconfig*.json ./
+COPY workspace.json ./
+COPY .npmrc ./
+
+# Copia as pastas de aplicação e bibliotecas
+COPY apps/ ./apps/
+COPY libs/ ./libs/
+
+# Instala dependências
+RUN npm install
+
+# Constrói o projeto backend
+RUN npx nx build backend
+
+# Estágio de produção
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copia apenas os arquivos necessários para produção
+COPY --from=builder /app/dist/apps/backend ./
+COPY --from=builder /app/node_modules ./node_modules
+
+# Expõe a porta 4000
+EXPOSE 4000
+
+# Variável de ambiente para a porta
+ENV PORT=4000
+
+# Comando para iniciar a aplicação
+CMD ["node", "main.js"]

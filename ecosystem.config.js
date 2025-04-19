@@ -10,6 +10,10 @@ module.exports = {
         script: 'npx',
         args: 'nx run frontend:dev',
       },
+      {
+        name: 'site',
+        script: 'npx',
+        args: 'nx run site:dev',
+      }
     ],
   };
-  

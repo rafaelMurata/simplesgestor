@@ -1,0 +1,39 @@
+# Estágio de construção
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+
+# Copia arquivos de configuração necessários
+COPY package*.json ./
+COPY nx.json ./
+COPY tsconfig*.json ./
+COPY workspace.json ./
+COPY .npmrc ./
+
+# Copia as pastas de aplicação e bibliotecas
+COPY apps/ ./apps/
+COPY libs/ ./libs/
+
+# Instala dependências
+RUN npm install
+
+# Constrói o projeto site
+RUN npx nx build site
+
+# Estágio de produção para Next.js
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copia os arquivos de produção compilados
+COPY --from=builder /app/dist/apps/site ./
+COPY --from=builder /app/node_modules ./node_modules
+
+# Expõe a porta 4200
+EXPOSE 4200
+
+# Variável de ambiente para a porta
+ENV PORT=4200
+
+# Comando para iniciar a aplicação Next.js
+CMD ["npm", "start"]
