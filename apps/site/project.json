@@ -4,7 +4,6 @@
   "sourceRoot": "apps/site",
   "projectType": "application",
   "tags": [],
-  "// targets": "to see all targets run: nx show project site --web",
   "targets": {
     "build": {
       "dependsOn": ["^build"],
@@ -14,8 +13,30 @@
         "outputPath": "dist/apps/site"
       }
     },
-    "dev": {
+    "serve": {
+      "dependsOn": ["build"],
+      "executor": "@nx/next:server",
       "options": {
+        "buildTarget": "site:build",
+        "dev": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "site:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "site:build:production",
+          "dev": false
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "dev": {
+      "executor": "@nx/next:server",
+      "options": {
+        "buildTarget": "site:build",
+        "dev": true,
         "port": 4200
       }
     }

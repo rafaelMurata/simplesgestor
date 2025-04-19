@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             { label: 'Blog', href: '/blog' },
             { label: 'Contato', href: '/contact' }
           ]}
-          rightContent={<a href="/login" className="login-button">Entrar</a>}
+          rightContent={<a href="process.env.NEXT_PUBLIC_FRONTEND_URL || 'http://localhost:4201/auth/login" className="login-button">Entrar</a>}
         />
         {children}
       </body>

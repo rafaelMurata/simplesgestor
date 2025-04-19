@@ -31,8 +31,9 @@
         "unitTestRunner": "jest"
       }
     }
-        },
-        "implicitDependencies": {
-          "auth": ["shared-models"]
+  },
+  "implicitDependencies": {
+    "auth": ["shared-models"],
+    "site": ["auth", "shared-models", "ui"]
   }
 }

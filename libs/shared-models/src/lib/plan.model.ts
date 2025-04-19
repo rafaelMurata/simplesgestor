@@ -2,10 +2,10 @@
  * Tipos de planos disponíveis
  */
 export enum PlanType {
-  FREE = 'Free',
-  BASIC = 'Basic',
-  ADVANCED = 'Advanced',
-  PREMIUM = 'Premium'
+  FREE = 'FREE',
+  BASIC = 'BASIC',
+  ADVANCED = 'ADVANCED',
+  PREMIUM = 'PREMIUM'
 }
 
 /**

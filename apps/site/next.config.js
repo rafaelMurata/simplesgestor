@@ -1,16 +1,14 @@
 const { composePlugins, withNx } = require('@nx/next');
+const withImages = require('next-images');
 
-/**
- * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
- **/
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  nx: {
-    svgr: false,
+  reactStrictMode: true,
+  transpilePackages: ['@simplesgestor/shared-models', '@simplesgestor/ui'],
+  env: {
+    NEXT_PUBLIC_FRONTEND_URL: process.env.NEXT_PUBLIC_FRONTEND_URL || 'http://localhost:4200/auth/login',
   },
-  images: {
-    unoptimized: true,
-  }
 };
 
-// Correct format for composePlugins
-module.exports = composePlugins(withNx)(nextConfig);
+// Combine os plugins corretamente
+module.exports = composePlugins(withNx, withImages)(nextConfig);
