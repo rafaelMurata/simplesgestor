@@ -1,5 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { JwtPayload } from '../types';
+import { JwtPayload } from '../../shared/types';
 
 /**
  * Decorator para obter o usuário atual da requisição

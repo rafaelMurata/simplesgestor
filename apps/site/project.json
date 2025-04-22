@@ -11,7 +11,9 @@
       "options": {
         "root": "apps/site",
         "outputPath": "dist/apps/site"
-      }
+      },
+      "inlineStyleLanguage": "scss",
+      "styles": ["libs/ui/src/lib/styles.scss"]
     },
     "serve": {
       "dependsOn": ["build"],

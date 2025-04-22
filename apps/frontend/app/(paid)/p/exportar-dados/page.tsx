@@ -1,3 +1,5 @@
+'use client'; // Adicione esta diretiva
+
 export default function PaidExportarDados() {
   return (
     <main>

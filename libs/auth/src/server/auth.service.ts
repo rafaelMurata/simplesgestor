@@ -1,5 +1,5 @@
  import * as jwt from 'jsonwebtoken';
-  import { AuthConfig, JwtPayload, TokenResponse, UserSession } from './types';
+  import { AuthConfig, JwtPayload, TokenResponse, UserSession } from '../shared/types';
  import { PlanType, SubscriptionStatus }  from '../../../shared-models';
 
  export class AuthService {

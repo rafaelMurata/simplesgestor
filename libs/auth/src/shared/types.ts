@@ -1,4 +1,4 @@
-import { PlanType, User, Plan, Subscription } from '../../../../libs/shared-models';
+import { PlanType, User, Plan, Subscription } from '../../../shared-models';
 
 /**
  * Dados da sessão do usuário

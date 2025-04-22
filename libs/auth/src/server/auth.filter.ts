@@ -1,6 +1,6 @@
 
   import { AuthService } from './auth.service';
-  import { JwtPayload, RouteAccess, RouteConfig, UserSession } from './types';
+  import { JwtPayload, RouteAccess, RouteConfig, UserSession } from '../shared/types';
   import { PlanType } from '../../../shared-models';
 
   /**

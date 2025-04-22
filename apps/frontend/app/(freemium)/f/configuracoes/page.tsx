@@ -1,4 +1,7 @@
+'use client'; // Adicione esta diretiva
+
 export default function FreemiumConfiguracoes() {
+
   return (
     <main>
       <h2>Configurações Freemium</h2>
