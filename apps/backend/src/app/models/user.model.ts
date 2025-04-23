@@ -1,4 +1,3 @@
-import { Plan ,Subscription} from '../../../shared-models';
 /**
  * Modelo de usuário para uso em toda a aplicação
  */
@@ -9,8 +8,6 @@ export interface User {
   createdAt: Date;
   updatedAt: Date;
   planId?: string;
-  plan?: Plan;
-  subscription?: Subscription;
 }
 
 /**

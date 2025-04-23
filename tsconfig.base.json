@@ -17,12 +17,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@simplesgestor/ui": ["libs/ui/src/index.ts"],
-      "@simplesgestor/ui/*": ["libs/ui/src/*"],
+      "@/*": ["apps/site/app/*"],
+      "@simplesgestor/auth": ["libs/auth/src/index.ts"],
       "@simplesgestor/shared-models": ["libs/shared-models/src/index.ts"],
       "@simplesgestor/shared-models/*": ["libs/shared-models/src/*"],
-      "@simplesgestor/auth": ["libs/auth/src/index.ts"],
-      "@/*": ["apps/site/app/*"]
+      "@simplesgestor/ui": ["libs/ui/src/index.ts"],
+      "@simplesgestor/ui/*": ["libs/ui/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp", "dist"]
