@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum subscriptionStatus {
+  ACTIVE
+  CANCELED
+  EXPIRED
+  INACTIVE
+}
+
+
+model User {
+  id        String         @id @default(cuid())
+  email     String         @unique
+  name      String?
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  plan      Plan?          @relation(fields: [planId], references: [id])
+  planId    String?
+  subscriptions Subscription[]
+  @@map("users")
+}
+
+// Modelo para planos de assinatura
+model Plan {
+  id        String        @id @default(cuid())
+  name      String
+  price     Decimal       @db.Decimal
+  features  Json
+  isActive  Boolean
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  users     User[]
+
+  @@map("plans")
+}
+
+// Modelo para assinaturas de usuários
+model Subscription {
+  id           String             @id @default(cuid())
+  userId       String
+  user         User               @relation(fields: [userId], references: [id])
+  status       subscriptionStatus
+  startDate    DateTime
+  endDate      DateTime?
+  externalId   String?
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  paymentHistory PaymentHistory[]
+
+  @@map("subscriptions")
+}
+
+// Enums para tipos de dados específicos
+enum PlanType {
+  FREE
+  BASIC
+  ADVANCED
+  PREMIUM
+}
+model PaymentHistory {
+  id                  String       @id @default(cuid())
+  subscriptionId      String
+  subscription        Subscription @relation(fields: [subscriptionId], references: [id])
+  amount              Decimal      @db.Decimal
+  status              String
+  paymentDate         DateTime
+  paymentMethod       String
+  externalTransactionId String?
+}
+
+

@@ -1,7 +1,23 @@
 import { PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
-import { SubscriptionStatus, PlanType } from '../../shared-models';
-import * as path from 'path';
+
+
+enum planType {
+  FREE = 'FREE',
+  BASIC = 'BASIC',
+  ADVANCED = 'ADVANCED',
+  PREMIUM = 'PREMIUM',
+}
+
+enum subscriptionStatus {
+  ACTIVE = 'ACTIVE',
+  CANCELED = 'CANCELED',
+  EXPIRED = 'EXPIRED',
+  INACTIVE = 'INACTIVE',
+}
+
+
+
 
 
 // Verificar se DATABASE_URL está definida com notação de índice
@@ -43,7 +59,7 @@ async function main() {
   // Criar planos
   const freePlan = await prisma.plan.create({
     data: {
-      name: 'FREE',
+      name: planType.FREE,
       price: 0.00,
       features: {
         maxProjects: 1,
@@ -57,7 +73,7 @@ async function main() {
 
   const basicPlan = await prisma.plan.create({
     data: {
-      name: 'BASIC',
+      name: planType.BASIC,
       price: 9.99,
       features: {
         maxProjects: 5,
@@ -71,7 +87,7 @@ async function main() {
 
   const advancedPlan = await prisma.plan.create({
     data: {
-      name: 'ADVANCED',
+      name: planType.ADVANCED,
       price: 19.99,
       features: {
         maxProjects: 10,
@@ -85,7 +101,7 @@ async function main() {
 
   const premiumPlan = await prisma.plan.create({
     data: {
-      name: 'PREMIUM',
+      name: planType.PREMIUM,
       price: 49.99,
       features: {
         maxProjects: -1,
@@ -110,7 +126,7 @@ async function main() {
       plan: { connect: { id: freePlan.id } },
       subscription: {
         create: {
-          status: 'ACTIVE',
+          status: subscriptionStatus.ACTIVE,
           startDate: new Date(),
         }
       }
@@ -125,7 +141,7 @@ async function main() {
       plan: { connect: { id: basicPlan.id } },
       subscription: {
         create: {
-          status: 'ACTIVE',
+          status: subscriptionStatus.ACTIVE,
           startDate: new Date(),
           endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) // 30 dias
         }
@@ -141,7 +157,7 @@ async function main() {
       plan: { connect: { id: advancedPlan.id } },
       subscription: {
         create: {
-          status: 'ACTIVE',
+          status: subscriptionStatus.ACTIVE,
           startDate: new Date(),
           endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) // 30 dias
         }
@@ -157,7 +173,7 @@ async function main() {
       plan: { connect: { id: premiumPlan.id } },
       subscription: {
         create: {
-          status: 'ACTIVE',
+          status: subscriptionStatus.ACTIVE,
           startDate: new Date(),
           endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) // 30 dias
         }

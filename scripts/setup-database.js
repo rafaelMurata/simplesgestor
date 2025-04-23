@@ -126,32 +126,22 @@ try {
 // Executar migrações do Prisma
 console.log('Executando migrações do Prisma...');
 try {
-  const prismaSchemaPath = path.resolve(rootDir, 'libs/database/prisma/schema.prisma');
-
-  // Gerar o cliente Prisma
-  console.log('Gerando cliente Prisma...');
-  execSync(`npx prisma generate --schema=${prismaSchemaPath}`, { stdio: 'inherit' });
+  const prismaSchemaPath = path.resolve(rootDir, 'prisma/schema.prisma');
 
   // Verificar se existe pasta de migrations
-  const migrationsPath = path.resolve(rootDir, 'libs/database/prisma/migrations');
+  const migrationsPath = path.resolve(rootDir, 'prisma/migrations');
   if (!fs.existsSync(migrationsPath)) {
     console.log('Criando primeira migração...');
-    execSync(`npx prisma migrate dev --name init --schema=${prismaSchemaPath}`, {
+    execSync(`npx prisma migrate dev --name init --schema=prisma/schema.prisma`, {
       stdio: 'inherit',
       env: {
         ...process.env,
         DATABASE_URL: process.env.DATABASE_URL
       }
     });
-  } else {
+  }else {
     console.log('Aplicando migrações existentes...');
-    execSync(`npx prisma migrate deploy --schema=${prismaSchemaPath}`, {
-      stdio: 'inherit',
-      env: {
-        ...process.env,
-        DATABASE_URL: process.env.DATABASE_URL
-      }
-    });
+    execSync(`npx prisma migrate dev --schema=prisma/schema.prisma`, { stdio: 'inherit' });
   }
 
   console.log('Migrações do Prisma aplicadas com sucesso!');
