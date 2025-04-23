@@ -15,11 +15,6 @@ enum subscriptionStatus {
   EXPIRED = 'EXPIRED',
   INACTIVE = 'INACTIVE',
 }
-
-
-
-
-
 // Verificar se DATABASE_URL está definida com notação de índice
 if (!process.env['DATABASE_URL']) {
   console.warn('AVISO: DATABASE_URL não está definida. Usando configuração padrão.');
@@ -124,7 +119,7 @@ async function main() {
       name: 'Usuário Free',
       passwordHash,
       plan: { connect: { id: freePlan.id } },
-      subscription: {
+      subscriptions: {
         create: {
           status: subscriptionStatus.ACTIVE,
           startDate: new Date(),
@@ -139,7 +134,7 @@ async function main() {
       name: 'Usuário Basic',
       passwordHash,
       plan: { connect: { id: basicPlan.id } },
-      subscription: {
+      subscriptions: {
         create: {
           status: subscriptionStatus.ACTIVE,
           startDate: new Date(),
@@ -155,7 +150,7 @@ async function main() {
       name: 'Usuário Advanced',
       passwordHash,
       plan: { connect: { id: advancedPlan.id } },
-      subscription: {
+      subscriptions: {
         create: {
           status: subscriptionStatus.ACTIVE,
           startDate: new Date(),
@@ -171,7 +166,7 @@ async function main() {
       name: 'Usuário Premium',
       passwordHash,
       plan: { connect: { id: premiumPlan.id } },
-      subscription: {
+      subscriptions: {
         create: {
           status: subscriptionStatus.ACTIVE,
           startDate: new Date(),
