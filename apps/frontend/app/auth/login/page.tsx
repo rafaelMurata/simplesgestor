@@ -5,44 +5,70 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
   const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const setAuthToken = (token: string) => {
+    localStorage.setItem('auth_token', token);
+  };
+
+  const isValidEmail = (email: string): boolean => {
+    // Simple email validation (can be improved)
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const isValidPassword = (password: string): boolean => {
+    // Basic password validation (can be improved)
+    return password.length >= 6;
+  };
+
+  const handleLogin = async () => {
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3333';
+    
+    if (!email || !password) {
+        setError('Por favor, preencha todos os campos.');
+        return;
+      }
+
+
+    if (!isValidEmail(email)) {
+      setError('Por favor, insira um e-mail válido ou não vazio.');
+      return;
+    }
+    if (!isValidPassword(password)) {
+      setError('A senha deve ter pelo menos 6 caracteres ou não vazia.');
+      return;
+    }
+
     setIsLoading(true);
-    setError('');
+    setError(''); // Clear previous errors
 
     try {
-      // A URL para autenticação seria: http://localhost:3000/api/auth/login (assumindo porta 3000 para backend)
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch(`${backendUrl}/api/auth/login`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Erro ao fazer login');
-      }
-
       const data = await response.json();
-
-      // Armazenar token no localStorage (ou em cookies seguros em produção)
-      localStorage.setItem('auth_token', data.token);
-
-      // Redirecionar para dashboard
+      if (!response.ok) {
+        throw new Error(data.message || 'Erro ao fazer login');
+      }
+      setAuthToken(data.token);
       router.push('/f/dashboard');
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Ocorreu um erro ao fazer login');
+    } catch (err: any) {
+      setError(err.message || 'Ocorreu um erro ao fazer login');
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    handleLogin();
   };
 
   return (
@@ -110,3 +136,4 @@ export default function LoginPage() {
     </div>
   );
 }
+

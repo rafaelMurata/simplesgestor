@@ -1,6 +1,7 @@
-export const dynamic = 'force-static';
+import { serialize } from 'cookie';
+export const dynamic = 'force-dynamic';
 
-export async function POST(request: Request) {
+export async function POST(request: Request): Promise<Response> {
   try {
     const body = await request.json();
 
@@ -13,20 +14,36 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify(body),
     });
-
     const data = await response.json();
+    if (!response.ok) {
+      return new Response(JSON.stringify({ message: data.message }), {
+        status: response.status,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    }
 
-    // Retorna a resposta do backend com o mesmo status
-    return new Response(JSON.stringify(data), {
-      status: response.status,
+    // Set the token in a cookie
+    const token = data.token;
+    const cookie = serialize('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production', // Set to true in production
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7, // 1 week
+    });
+
+    // Return the user and set the cookie
+    return new Response(JSON.stringify({ user: data.user }), {
+      status: 200,
       headers: {
         'Content-Type': 'application/json',
+        'Set-Cookie': cookie,
       },
     });
-  } catch (error) {
-    console.error('Erro na rota de login:', error);
+  } catch (error: any) {
     return new Response(
-      JSON.stringify({ message: 'Erro ao processar a requisição de login' }),
+      JSON.stringify({ message: error.message || 'Erro ao processar a requisição de login' }),
       {
         status: 500,
         headers: {
