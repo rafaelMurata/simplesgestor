@@ -112,4 +112,7 @@ export class AuthService {
     return !!user. && user.subscriptions.status === 'ACTIVE';
   }
  */
+  async logout(): Promise<void>{
+    //This function will do nothing.
+  }
 }

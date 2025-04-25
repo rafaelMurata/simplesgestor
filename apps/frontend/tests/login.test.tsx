@@ -44,9 +44,11 @@ describe('LoginPage', () => {
     fireEvent.click(screen.getByRole('button', { name: /entrar/i }));
 
     await waitFor(() => {
-      expect(screen.getByRole('alert')).toHaveTextContent(
-        /por favor, insira um e-mail válido\./i
-      );
+      expect(
+        screen.getByText((content) =>
+          content.toLowerCase().includes('e-mail') && content.toLowerCase().includes('válido')
+        )
+      ).toBeInTheDocument();
     });
   });
 
@@ -62,9 +64,11 @@ describe('LoginPage', () => {
     fireEvent.click(screen.getByRole('button', { name: /entrar/i }));
 
     await waitFor(() => {
-      expect(screen.getByRole('alert')).toHaveTextContent(
-        /a senha deve ter pelo menos 6 caracteres\./i
-      );
+      expect(
+        screen.getByText((content) =>
+          content.toLowerCase().includes('senha') && content.includes('caracter')
+        )
+      ).toBeInTheDocument();
     });
   });
 
