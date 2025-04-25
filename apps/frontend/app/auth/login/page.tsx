@@ -27,7 +27,7 @@ export default function LoginPage() {
 
   const handleLogin = async () => {
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3333';
-    
+
     if (!email || !password) {
         setError('Por favor, preencha todos os campos.');
         return;

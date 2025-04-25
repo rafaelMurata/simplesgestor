@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AuthController } from '../auth/auth.controller';
-import { AuthService } from '../auth/auth.service';
-import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { UnauthorizedException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { User } from '@prisma/client';
+import { AuthController } from '../src/auth/auth.controller';
+import { AuthService } from '../src/auth/auth.service';
+import { UsersService } from '../src/users/users.service';
 
 describe('AuthController', () => {
   let authController: AuthController;
@@ -21,7 +21,7 @@ describe('AuthController', () => {
     sign: jest.fn(),
     verify: jest.fn(),
   };
-  
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AuthController],
@@ -60,7 +60,13 @@ describe('AuthController', () => {
       jest.spyOn(authService, 'validateUser').mockResolvedValue(result.user as unknown as User);
       const req = { user: mockUser };
 
-      const response = await authController.login({}, req);
+      const response = await authController.login(
+        {
+          email: '',
+          password: '',
+        },
+        req
+      );
 
       expect(response).toEqual(result);
     });
@@ -70,8 +76,16 @@ describe('AuthController', () => {
       jest.spyOn(authService, 'validateUser').mockRejectedValue(new UnauthorizedException('Credenciais inválidas'));
       const req = { user: null };
 
-      await expect(authController.login({}, req)).rejects.toThrow(UnauthorizedException);
-      
+      await expect(
+        authController.login(
+          {
+            email: '',
+            password: '',
+          },
+          req
+        )
+      ).rejects.toThrow(UnauthorizedException);
+
     });
   });
 });

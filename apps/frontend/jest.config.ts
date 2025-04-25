@@ -7,10 +7,11 @@ const createJestConfig = nextJest({
 
 const config: Config = {
   preset: 'ts-jest',
-  setupFiles: ['<rootDir>/jest.setup.ts'],
-  transform: {
-    '^.+\\.(ts|tsx)?$': 'ts-jest',
-  },
+  testEnvironment: 'jest-environment-jsdom', // Nome completo do pacote
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1'
+  }
 };
 
 export default createJestConfig(config);

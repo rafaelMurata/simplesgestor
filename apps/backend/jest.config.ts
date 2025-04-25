@@ -1,19 +1,17 @@
-import { Config } from 'jest';
+import type { Config } from 'jest';
+import nextJest from 'next/jest';
+
+const createJestConfig = nextJest({
+  dir: './',
+});
 
 const config: Config = {
   preset: 'ts-jest',
-  testEnvironment: 'node',
-  moduleDirectories: ['node_modules', 'src'],
-  moduleFileExtensions: ['ts', 'js'],
-  testRegex: '.*\\.spec\\.ts$',
-  transform: {
-    '^.+\\.(t|j)s$': 'ts-jest'
-  },
-  globals: {
-    'ts-jest': {
-      tsconfig: 'apps/backend/tsconfig.spec.json'
-    }
+  testEnvironment: 'jest-environment-jsdom', // Nome completo do pacote
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1'
   }
 };
 
-export default config;
+export default createJestConfig(config);

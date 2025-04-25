@@ -5,6 +5,7 @@ const nextConfig = {
     svgr: false,
   },
   output: 'export',
+  transpilePackages: ['@simplesgestor/shared-models', '@simplesgestor/ui'],
   images: {
     unoptimized: true,
   },
