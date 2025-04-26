@@ -1,17 +1,20 @@
-const { composePlugins, withNx } = require('@nx/next');
+const { composePlugins, withNx } = require('@nx/next')
 
 const nextConfig = {
   nx: {
     svgr: false,
   },
-  output: 'export',
-  transpilePackages: ['@simplesgestor/shared-models', '@simplesgestor/ui'],
-  images: {
-    unoptimized: true,
-  },
   experimental: {
-    serverComponentsExternalPackages: ['@nestjs/microservices', '@grpc/grpc-js']
+    serverComponentsExternalPackages: ['@prisma/client']
   }
-};
+}
 
-module.exports = composePlugins(withNx(nextConfig));
+module.exports = composePlugins(withNx, (config) => {
+  return {
+    ...config,
+    experimental: {
+      ...config.experimental,
+      serverActions: true
+    }
+  }
+})(nextConfig)

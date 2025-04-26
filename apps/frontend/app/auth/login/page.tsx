@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { signIn } from '../../../auth';
 
 export default function LoginPage() {
   const [email, setEmail] = useState<string>('');
@@ -47,18 +48,17 @@ export default function LoginPage() {
     setError(''); // Clear previous errors
 
     try {
-      const response = await fetch(`${backendUrl}/api/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+       const result = await signIn("credentials", {
+           email,
+           password,
+          redirect: false
       });
 
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message || 'Erro ao fazer login');
+      if (result?.error) {
+        alert(result.error);
+      } else {
+        router.push("/dashboard");
       }
-      setAuthToken(data.token);
-      router.push('/f/dashboard');
     } catch (err: any) {
       setError(err.message || 'Ocorreu um erro ao fazer login');
     } finally {

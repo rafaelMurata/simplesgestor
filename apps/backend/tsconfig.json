@@ -2,13 +2,17 @@
   "extends": "../../tsconfig.base.json",
   "files": [],
   "include": [],
+  "baseUrl": ".",
   "references": [
     {
-      "path": "./tsconfig.app.json"
+      "path": "./tsconfig.app.json",
     }
   ],
   "compilerOptions": {
-    "types": ["jest", "node"],
-    "esModuleInterop": true
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+     "@/auth": ["./src/auth.ts"]
+    }
   }
 }
