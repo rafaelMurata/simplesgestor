@@ -1,4 +1,4 @@
-// postcss.config.js na raiz do projeto
+// postcss.configuracoes.js na raiz do projeto
 module.exports = {
   plugins: {
     tailwindcss: {},

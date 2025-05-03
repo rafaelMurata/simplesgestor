@@ -5,7 +5,11 @@ import Image from 'next/image';
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
-
+export async function generateStaticParams() {
+  return posts.map(post => ({
+    slug: post.slug
+  }));
+}
 export default async function BlogPost({ params }: PageProps) {
   const { slug } = await params;
   const post = posts.find(p => p.slug === slug);

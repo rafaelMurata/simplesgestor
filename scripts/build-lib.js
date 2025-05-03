@@ -11,13 +11,6 @@ try {
   // Compilar com TypeScript
   execSync('npx tsc -p libs/auth/tsconfig.lib.json', { stdio: 'inherit' });
 
-  // Copiar package.json para a pasta de saída
-  const packageJson = require('../libs/auth/package.json');
-  fs.writeFileSync(
-    path.join(__dirname, '../dist/libs/auth/package.json'),
-    JSON.stringify(packageJson, null, 2)
-  );
-
   // Copiar o arquivo de tipos
   fs.copyFileSync(
     path.join(__dirname, '../libs/auth/src/index.d.ts'),

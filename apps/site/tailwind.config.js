@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-// Esta configuração foi movida para o arquivo tailwind.config.js na raiz do projeto
+// Esta configuração foi movida para o arquivo tailwind.configuracoes.js na raiz do projeto
 module.exports = {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',

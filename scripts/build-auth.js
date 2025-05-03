@@ -43,7 +43,6 @@ try {
   process.exit(1);
 }
 
-// Copiar package.json
 try {
   console.log('Copiando package.json...');
   const packageJson = require(PACKAGE_JSON);

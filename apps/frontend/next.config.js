@@ -1,4 +1,4 @@
-const { composePlugins, withNx } = require('@nx/next');
+const { composePlugins, withNx } = require('@nx/next')
 
 const nextConfig = {
   nx: {
@@ -8,10 +8,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  transpilePackages: ['@simplesgestor/ui'],
   experimental: {
-    serverComponentsExternalPackages: ['@prisma/client'],
+    serverActions: true
   }
-};
+}
 
-module.exports = composePlugins(withNx(nextConfig));
+module.exports = composePlugins(withNx, nextConfig)

@@ -4,7 +4,6 @@
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "test"]
       }
     }
   },
@@ -34,6 +33,8 @@
   },
   "implicitDependencies": {
     "auth": ["shared-models"],
-    "site": ["auth", "shared-models", "ui"]
-  }
+    "site": ["shared-models", "ui"],
+    "frontend": ["shared-models", "ui"]
+  },
+  "nxCloudId": "681685e3cb901c07ec2ebd44"
 }

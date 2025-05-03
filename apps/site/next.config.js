@@ -2,6 +2,13 @@ const { composePlugins, withNx } = require('@nx/next');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  nx: {
+    svgr: false, // Desabilita SVGR integrado
+  },
+  output: 'export',
+  images: {
+    unoptimized: true,
+  },
   reactStrictMode: true,
   transpilePackages: ['@simplesgestor/shared-models'],
   env: {

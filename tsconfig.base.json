@@ -18,7 +18,6 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["apps/site/app/*"],
-      "@simplesgestor/auth": ["libs/auth/src/index.ts"],
       "@simplesgestor/shared-models": ["libs/shared-models/src/index.ts"],
       "@simplesgestor/shared-models/*": ["libs/shared-models/src/*"],
       "@simplesgestor/ui": ["libs/ui/src/index.ts"],
