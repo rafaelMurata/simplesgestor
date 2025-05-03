@@ -1,3 +1,4 @@
+'use client';
 export default function PaidConfiguracoesPage() {
   return (
     <section className="space-y-6">

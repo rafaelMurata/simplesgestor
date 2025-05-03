@@ -36,15 +36,18 @@ export const authConfig = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.accessToken = user.accessToken
-        token.role = user.planType
+        token.accessToken = user.accessToken;
+        token.role = user.planType;
       }
-      return token
+      return token;
     },
     async session({ session, token }) {
-      session.accessToken = token.accessToken as string
-      session.user.role = token.role as string
-      return session
+      session.accessToken = token.accessToken as string;
+      session.user = {
+        ...session.user,
+        role: token.role as string
+      };
+      return session;
     }
   },
   pages: {

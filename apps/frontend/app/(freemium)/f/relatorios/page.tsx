@@ -1,4 +1,6 @@
+'use client';
 export default function FreemiumRelatoriosPage() {
+
   return (
     <section>
       <h1 className="text-3xl font-bold mb-4 text-blue-800">Relatórios Freemium</h1>

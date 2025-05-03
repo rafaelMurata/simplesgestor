@@ -4,7 +4,7 @@ import { auth } from './auth';
 export default auth((req: NextRequest) => {
   const { pathname } = req.nextUrl;
 
-  if (!req.cookies.has("/dash") && pathname.startsWith("/dash")) {
+  if (!req.cookies.has("/dashboard") && pathname.startsWith("/dashboard")) {
     return NextResponse.redirect(new URL("/auth/login", req.url));
   }
 

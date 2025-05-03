@@ -1,3 +1,4 @@
+'use client';
 export default function PaidDashboardPage() {
   return (
     <section className="space-y-8">
