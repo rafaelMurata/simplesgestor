@@ -11,9 +11,9 @@ interface User {
 function getRedirectPath(plan: string): string {
   switch (plan) {
     case 'free':
-      return '/f/dashboard';
+      return '/f/dash';
     case 'paid':
-      return '/p/dashboard';
+      return '/p/dash';
     default:
       return '/auth/login'; // Fallback to login page
   }

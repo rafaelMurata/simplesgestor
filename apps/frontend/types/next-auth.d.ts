@@ -1,4 +1,5 @@
 import "next-auth"
+import { DefaultSession } from '@auth/core/types';
 
 declare module "next-auth" {
   interface User {

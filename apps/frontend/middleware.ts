@@ -1,10 +1,10 @@
 import { NextResponse, type NextRequest } from "next/server";
-export { auth as middleware } from "@/auth"
+import { auth } from './auth';
 
 export default auth((req: NextRequest) => {
   const { pathname } = req.nextUrl;
 
-  if (!req.cookies.has("/dashboard") && pathname.startsWith("/dashboard")) {
+  if (!req.cookies.has("/dash") && pathname.startsWith("/dash")) {
     return NextResponse.redirect(new URL("/auth/login", req.url));
   }
 

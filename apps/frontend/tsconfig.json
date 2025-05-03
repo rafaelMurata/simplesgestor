@@ -3,13 +3,30 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@simplesgestor/ui": ["libs/ui/src/index.ts"],
-      "@/auth": ["./src/auth.ts"]
-    }
+      "@simplesgestor/ui": [
+        "libs/ui/src/index.ts"
+      ],
+      "@/auth": [
+        "./src/auth.ts"
+      ]
+    },
+    "allowJs": true,
+    "strict": false,
+    "noEmit": true,
+    "incremental": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
+    "next-env.d.ts",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "next-env.d.ts"
+    "../../dist/apps/frontend/.next/types/**/*.ts"
   ]
 }
