@@ -1,16 +1,13 @@
-import { NextResponse, type NextRequest } from "next/server";
-import { auth } from './auth';
+import NextAuth from "next-auth";
+import { authConfig } from './auth.config';
+import { NextRequest, NextResponse } from "next/server";
 
-export default auth((req: NextRequest) => {
-  const { pathname } = req.nextUrl;
 
-  if (!req.cookies.has("/dashboard") && pathname.startsWith("/dashboard")) {
-    return NextResponse.redirect(new URL("/auth/login", req.url));
-  }
-
-  return NextResponse.next();
-});
+export default NextAuth(authConfig).auth;
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"]
+  // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)',],
 };
+
+
