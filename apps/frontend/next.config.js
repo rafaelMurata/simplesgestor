@@ -4,12 +4,9 @@ const nextConfig = {
   nx: {
     svgr: false,
   },
-  output: 'export',
-  images: {
-    unoptimized: true,
-  },
   experimental: {
-    serverActions: true
+    nodeMiddleware: true,
+    serverActions: {}
   }
 }
 
