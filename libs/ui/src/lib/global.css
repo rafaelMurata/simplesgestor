@@ -1,4 +1,10 @@
+
+/* Ou para Tailwind v4+ */
 @import 'tailwindcss';
+
+@import '@tailwindcss/base';
+@import '@tailwindcss/components';
+@import '@tailwindcss/utilities';
 
 :root {
 
