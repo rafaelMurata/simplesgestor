@@ -2,7 +2,8 @@
 module.exports = {
   content: [
     "./apps/**/*.{js,ts,jsx,tsx}",
-    "./libs/**/*.{js,ts,jsx,tsx}"
+    "./libs/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@simplesgestor/ui/**/*.js"
   ],
   theme: {
     extend: {

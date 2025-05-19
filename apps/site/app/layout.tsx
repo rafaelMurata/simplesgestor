@@ -1,4 +1,4 @@
-import '../../../libs/ui/src/lib/global.css';
+import '@simplesgestor/ui/lib/global.css';
 import { NavbarClient } from './components/NavbarClient';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
