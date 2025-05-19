@@ -3,6 +3,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@simplesgestor/ui": [
+        "libs/ui/src/index.ts"
+      ],
+      "@simplesgestor/ui/styles": [
+        "libs/ui/src/lib/global.css"
+      ],
       "@/*": [
         "./*"
       ],

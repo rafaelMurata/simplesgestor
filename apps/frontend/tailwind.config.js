@@ -1,13 +1,13 @@
-/** @type {import('tailwindcss').Config} */
-// Esta configuração foi movida para o arquivo tailwind.configuracoes.js na raiz do projeto
+const { createGlobPatternsForDependencies } = require('@nx/next/tailwind');
+
 module.exports = {
   content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx}',
+    ...createGlobPatternsForDependencies(__dirname),
+    '../../libs/ui/src/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
     extend: {},
   },
   plugins: [],
-};
+}

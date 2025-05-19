@@ -12,6 +12,9 @@
       ],
       "executor": "@nx/next:build",
       "options": {
+        "main": "src/index.ts",
+        "assets": ["src/lib/global.css"],
+        "tsConfig": "libs/ui/tsconfig.lib.json",
         "root": "apps/frontend",
         "outputPath": "dist/apps/frontend"
       },
