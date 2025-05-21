@@ -1,4 +1,4 @@
-import '../../../libs/ui/src/lib/global.css';
+import '../../../libs/ui/src/lib/global.css'; // Caminho relativo real
 export const metadata = {
   title: 'SimplesGestor',
 };
