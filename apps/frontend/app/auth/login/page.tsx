@@ -56,7 +56,7 @@ export default function LoginPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r">
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
-        <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-6">Login</h1>
+        <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-6 ">Login</h1>
 
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-center">

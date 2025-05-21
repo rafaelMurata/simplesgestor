@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import posts from '@/data/blog-posts.json';
+import posts from '../../../app/data/blog-posts.json';
 import Image from 'next/image';
 
 interface PageProps {

@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import BlogCard from '@/components/BlogCard';
-import posts from '@/data/blog-posts.json';
+import BlogCard from './components/BlogCard';
+import posts from '../../site/app/data/blog-posts.json';
 
 export default function HomePage() {
   return (
@@ -19,7 +19,7 @@ export default function HomePage() {
               Gestão Financeira Simplificada para MEIs
             </h1>
             <p className="text-xl">
-              Automatize suas tarefas contábeis, emita notas fiscais e mantenha 
+              Automatize suas tarefas contábeis, emita notas fiscais e mantenha
               o controle total do seu negócio em um só lugar
             </p>
           </div>
@@ -31,7 +31,7 @@ export default function HomePage() {
         <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
           Como podemos ajudar seu negócio
         </h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {posts.map((post) => (
             <BlogCard key={post.id} post={post} />

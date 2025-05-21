@@ -16,6 +16,9 @@
         "assets": ["src/lib/global.css"],
         "tsConfig": "libs/ui/tsconfig.lib.json",
         "root": "apps/frontend",
+        "styles": [
+          "libs/ui/src/lib/global.css"
+        ],
         "outputPath": "dist/apps/frontend"
       },
       "inlineStyleLanguage": "scss",
