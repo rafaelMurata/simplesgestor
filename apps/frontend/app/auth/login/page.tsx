@@ -54,7 +54,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-indigo-600 px-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r">
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
         <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-6">Login</h1>
 
