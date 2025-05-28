@@ -4,28 +4,29 @@ import Credentials from "next-auth/providers/credentials";
 export const { handlers, auth } = NextAuth({
   providers: [
     Credentials({
-      name: 'Credentials',
-      credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Senha", type: "password" }
-      },
       async authorize(credentials) {
         try {
-          const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/login`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(credentials)
-          });
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/login`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(credentials),
+            }
+          );
 
           if (!response.ok) return null;
 
           const { token, user } = await response.json();
+
           return {
-            ...user,
             id: user.id.toString(),
+            name: user.name || "",
+            email: user.email || "",
             accessToken: token,
-            planType: user.planType
+            planType: user.planType || "free"
           };
+
         } catch (error) {
           return null;
         }
@@ -34,11 +35,17 @@ export const { handlers, auth } = NextAuth({
   ],
   callbacks: {
     async jwt({ token, user }) {
-      if (user) token.user = user;
+      if (user) {
+        token.planType = user.planType
+        token.name = user.name
+      }
       return token;
     },
-    async session({ session, token }) {
-      return session;
-    }
+     async session({ session, token }) {
+    session.user.planType = token.planType as string
+    session.user.name = token.name
+    return session
+  }
+
   }
 });

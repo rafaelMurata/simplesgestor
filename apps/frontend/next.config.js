@@ -1,12 +1,13 @@
-const { composePlugins, withNx } = require('@nx/next');
+const { composePlugins, withNx } = require('@nx/next')
 
 const nextConfig = {
   nx: {
     svgr: false,
   },
   experimental: {
-    serverActions: true
+    serverActions: true,
+    nodeMiddleware: true
   }
-};
+}
 
 module.exports = composePlugins(withNx(nextConfig));

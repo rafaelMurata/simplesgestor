@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from 'next-auth/react';
 
 export default function LoginPage() {
   const [email, setEmail] = useState<string>('');
@@ -11,6 +11,12 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const router = useRouter();
+
+  const { data: session } = useSession();
+
+  if (session?.user.planType === "free") {
+    return <div>Dashboard Free</div>;
+  }
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -39,7 +45,7 @@ export default function LoginPage() {
       if (result?.error) {
         setError(result.error);
       } else {
-        router.push("/dashboard");
+        router.refresh();
       }
     } catch (err: any) {
       setError(err.message || 'Ocorreu um erro ao fazer login');

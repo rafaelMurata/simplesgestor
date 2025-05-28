@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "types": ["jest", "node"],
     "esModuleInterop": true,
     "rootDir": ".",
     "sourceMap": true,

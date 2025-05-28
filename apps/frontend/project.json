@@ -7,22 +7,12 @@
   "// targets": "to see all targets run: nx show project frontend --web",
   "targets": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["^build"],
       "executor": "@nx/next:build",
       "options": {
-        "main": "src/index.ts",
-        "assets": ["src/lib/global.css"],
-        "tsConfig": "libs/ui/tsconfig.lib.json",
         "root": "apps/frontend",
-        "styles": [
-          "libs/ui/src/lib/global.css"
-        ],
         "outputPath": "dist/apps/frontend"
-      },
-      "inlineStyleLanguage": "scss",
-      "styles": ["libs/ui/src/lib/styles.scss"]
+      }
     },
     "serve": {
       "dependsOn": [
