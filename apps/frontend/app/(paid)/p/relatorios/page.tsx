@@ -1,4 +1,5 @@
-'use client';
+export const dynamic = 'force-dynamic';
+
 export default function PaidRelatoriosPage() {
   return (
     <section className="space-y-6">

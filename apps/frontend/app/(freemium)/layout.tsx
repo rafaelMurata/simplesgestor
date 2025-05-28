@@ -38,7 +38,7 @@ export default function FreemiumLayout({ children }: { children: React.ReactNode
     <div className="min-h-screen flex flex-col bg-gray-50">
       <header className="w-full bg-white border-b border-blue-100 shadow-sm">
         <div className="max-w-6xl mx-auto flex items-center justify-between py-4 px-4">
-          <a href="/" className="text-2xl font-bold text-blue-700 tracking-tight">SimplesGestor</a>
+          <a href="/apps/frontend/public" className="text-2xl font-bold text-blue-700 tracking-tight">SimplesGestor</a>
           <nav className="space-x-6 flex items-center">
             <a href="/f/dashboard" className="text-blue-700 hover:text-blue-900 font-medium">Dashboard</a>
             <a href="/f/relatorios" className="text-blue-700 hover:text-blue-900 font-medium">Relatórios</a>

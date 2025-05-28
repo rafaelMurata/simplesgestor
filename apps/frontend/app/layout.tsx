@@ -7,6 +7,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
+    <head>
+      <meta charSet="utf-8" />
+      <title>Todo App</title>
+    </head>
     <body className="bg-gray-50">
     {children}
     </body>
