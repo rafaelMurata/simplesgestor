@@ -5,9 +5,9 @@ const nextConfig = {
     svgr: false,
   },
   experimental: {
-    serverActions: {  },
-    nodeMiddleware: false
+    serverActions: true,
+    optimizeCss: true
   }
 }
 
-module.exports = composePlugins(withNx)(nextConfig);
+module.exports = composePlugins(withNx(nextConfig));
